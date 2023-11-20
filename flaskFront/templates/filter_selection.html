@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Filter</title>
+    {{ bootstrap.load_css() }}
+</head>
+<body>
+    <div class="container">
+        <h1>Apply Filter to Picture</h1>
+        <img id="treeImage" src="{{ image_url }}" width="250" alt="Tree Image">
+        <br>
+        <button onclick="applySepia()">Sepia</button>
+        <button onclick="applyBlackWhite()">Black & White</button>
+        <button onclick="applyBlur()">Blur</button>
+        <button onclick="applyBrighten()">Brighten</button>
+        <button onclick="resetFilters()">Original</button>
+        <!-- New button to go back to the main page -->
+        <button onclick="goBackToMainPage()">Back to Main</button>
+    </div>
+    <!-- JavaScript to apply CSS filters and redirect -->
+    <script>
+        function applySepia() {
+            document.getElementById('treeImage').style.filter = 'sepia(100%)';
+        }
+        
+        function applyBlackWhite() {
+            document.getElementById('treeImage').style.filter = 'grayscale(100%)';
+        }
+        
+        function applyBlur() {
+            document.getElementById('treeImage').style.filter = 'blur(5px)';
+        }
+        
+        function applyBrighten() {
+            document.getElementById('treeImage').style.filter = 'brightness(150%)';
+        }
+        
+        function resetFilters() {
+            document.getElementById('treeImage').style.filter = '';
+        }
+        
+        // Function to redirect to the main page
+        function goBackToMainPage() {
+            window.location.href = '/'; // Assuming the root of your website is the main page
+        }
+    </script>
+</body>
+</html>
+
+
