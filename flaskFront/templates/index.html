@@ -22,8 +22,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Picture Filter </h1>
-        <img src="{{ image_url }}" width="250" alt="Tree Image">
+        <h1>Picture Filter</h1>
+        {% if image_urls %}
+            {% for image_url in image_urls %}
+                <img src="{{ image_url }}" width="250" alt="Animal Image">
+            {% endfor %}
+        {% else %}
+            <img src="{{ image_url }}" width="250" alt="Tree Image">
+        {% endif %}
         <br>
         <br>
         <form action="/filters" method="post">
