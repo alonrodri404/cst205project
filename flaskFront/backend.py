@@ -29,4 +29,3 @@ def generate_animal_pictures():
             print(f"Error while fetching animal picture {i+1}: {e}")
 
     return image_urls
-

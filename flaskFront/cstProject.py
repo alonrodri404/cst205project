@@ -24,7 +24,7 @@ def filters():
 
 @app.route('/filter_selection')
 def filter_selection():
-    return render_template("filter_selection.html", image_url=url_for('static', filename='images/tree.jpg'))
+    return render_template("filter_selection.html", image_url=url_for('static', filename='images/animal_1.jpg'))
 
 if __name__ == '__main__':
     app.run(debug=True)
