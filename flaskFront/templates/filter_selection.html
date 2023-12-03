@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply Filter</title>
     {{ bootstrap.load_css() }}
+    <style>
+        body {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(172, 213, 229);
+        }
+
+        .container {
+            width: 1000px;
+            padding: 10px;
+            margin: 10px;
+            color: #000;
+            text-align: center;
+        }
+
+        img {
+            margin: 0 auto; 
+            display: block; 
+            align-items: center;
+        }
+
+        /* Initially hide all sliders */
+        .slider {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -35,30 +63,76 @@
         </div>
     </div>
     <script>
-        function applySepia() {
-            document.getElementById('treeImage').style.filter = 'sepia(100%)';
+        // Store current filter values
+        var currentFilters = {
+            sepia: '0%',
+            grayscale: '0%',
+            blur: '0px',
+            brightness: '100%'
+        };
+
+        function applyFilters() {
+            var filterString = '';
+            for (var filter in currentFilters) {
+                filterString += filter + '(' + currentFilters[filter] + ') ';
+            }
+            document.getElementById('treeImage').style.filter = filterString.trim();
         }
-        
-        function applyBlackWhite() {
-            document.getElementById('treeImage').style.filter = 'grayscale(100%)';
+
+        function applySepia(value) {
+            currentFilters['sepia'] = value + '%';
+            applyFilters();
         }
-        
-        function applyBlur() {
-            document.getElementById('treeImage').style.filter = 'blur(5px)';
+
+        function applyBlackWhite(value) {
+            currentFilters['grayscale'] = value + '%';
+            applyFilters();
         }
-        
-        function applyBrighten() {
-            document.getElementById('treeImage').style.filter = 'brightness(150%)';
+
+        function applyBlur(value) {
+            currentFilters['blur'] = value + 'px';
+            applyFilters();
+        }
+
+        function applyBrighten(value) {
+            currentFilters['brightness'] = value + '%';
+            applyFilters();
         }
 
         function resetFilters() {
-            document.getElementById('treeImage').style.filter = '';
+            // Reset values
+            currentFilters = {
+                sepia: '0%',
+                grayscale: '0%',
+                blur: '0px',
+                brightness: '100%'
+            };
+            applyFilters();
+            // Hide all sliders
+            var sliders = document.getElementsByClassName('slider');
+            for (var i = 0; i < sliders.length; i++) {
+                sliders[i].style.display = 'none';
+            }
         }
-        
-        // Function to redirect to the main page
+
+        function toggleSlider(filter) {
+            var sliderContainerId = filter + 'SliderContainer';
+            var sliderContainer = document.getElementById(sliderContainerId);
+            var sliders = document.getElementsByClassName('slider');
+            // Hide all sliders except for the active one
+            for (var i = 0; i < sliders.length; i++) {
+                if (sliders[i].id !== sliderContainerId) {
+                    sliders[i].style.display = 'none';
+                }
+            }
+            // Toggle the clicked slider
+            sliderContainer.style.display = sliderContainer.style.display === 'block' ? 'none' : 'block';
+        }
+
         function goBackToMainPage() {
             window.location.href = '/'; 
         }
     </script>
 </body>
 </html>
+
