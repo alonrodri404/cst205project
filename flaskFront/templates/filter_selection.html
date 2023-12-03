@@ -5,45 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apply Filter</title>
     {{ bootstrap.load_css() }}
+    <style>
+        body {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(172, 213, 229);
+        }
+
+        .container {
+            width: 1000px;
+            padding: 10px;
+            margin: 10px;
+            color: #000;
+            text-align: center;
+        }
+
+        img {
+            margin: 0 auto; 
+            display: block; 
+            align-items: center;
+        }
+
+        /* Initially hide all sliders */
+        .slider {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Apply Filter to Picture</h1>
-        <img id="treeImage" src="{{ image_url }}" width="250" alt="Tree Image">
+        <h1>Apply Filter to your Picture</h1>
+        <img id="treeImage" src="{{ image_url }}" width="550" alt="Tree Image">
         <br>
-        <button onclick="applySepia()">Sepia</button>
-        <button onclick="applyBlackWhite()">Black & White</button>
-        <button onclick="applyBlur()">Blur</button>
-        <button onclick="applyBrighten()">Brighten</button>
+        <button onclick="toggleSlider('sepia')">Sepia</button>
+        <button onclick="toggleSlider('blackWhite')">Black & White</button>
+        <button onclick="toggleSlider('blur')">Blur</button>
+        <button onclick="toggleSlider('brighten')">Brighten</button>
         <button onclick="resetFilters()">Original</button>
-        <!-- New button to go back to the main page -->
         <button onclick="goBackToMainPage()">Back to Main</button>
+        <div id="sepiaSliderContainer" class="slider">
+            <label for="sepiaSlider">Sepia:</label>
+            <input type="range" id="sepiaSlider" min="0" max="100" value="0" oninput="applySepia(this.value)">
+        </div>
+        <div id="blackWhiteSliderContainer" class="slider">
+            <label for="blackWhiteSlider">Black & White:</label>
+            <input type="range" id="blackWhiteSlider" min="0" max="100" value="0" oninput="applyBlackWhite(this.value)">
+        </div>
+        <div id="blurSliderContainer" class="slider">
+            <label for="blurSlider">Blur:</label>
+            <input type="range" id="blurSlider" min="0" max="10" value="0" oninput="applyBlur(this.value)">
+        </div>
+        <div id="brightenSliderContainer" class="slider">
+            <label for="brightenSlider">Brighten:</label>
+            <input type="range" id="brightenSlider" min="0" max="200" value="100" oninput="applyBrighten(this.value)">
+        </div>
     </div>
-    <!-- JavaScript to apply CSS filters and redirect -->
     <script>
-        function applySepia() {
-            document.getElementById('treeImage').style.filter = 'sepia(100%)';
+        // Store current filter values
+        var currentFilters = {
+            sepia: '0%',
+            grayscale: '0%',
+            blur: '0px',
+            brightness: '100%'
+        };
+
+        function applyFilters() {
+            var filterString = '';
+            for (var filter in currentFilters) {
+                filterString += filter + '(' + currentFilters[filter] + ') ';
+            }
+            document.getElementById('treeImage').style.filter = filterString.trim();
         }
-        
-        function applyBlackWhite() {
-            document.getElementById('treeImage').style.filter = 'grayscale(100%)';
+
+        function applySepia(value) {
+            currentFilters['sepia'] = value + '%';
+            applyFilters();
         }
-        
-        function applyBlur() {
-            document.getElementById('treeImage').style.filter = 'blur(5px)';
+
+        function applyBlackWhite(value) {
+            currentFilters['grayscale'] = value + '%';
+            applyFilters();
         }
-        
-        function applyBrighten() {
-            document.getElementById('treeImage').style.filter = 'brightness(150%)';
+
+        function applyBlur(value) {
+            currentFilters['blur'] = value + 'px';
+            applyFilters();
         }
-        
+
+        function applyBrighten(value) {
+            currentFilters['brightness'] = value + '%';
+            applyFilters();
+        }
+
         function resetFilters() {
-            document.getElementById('treeImage').style.filter = '';
+            // Reset values
+            currentFilters = {
+                sepia: '0%',
+                grayscale: '0%',
+                blur: '0px',
+                brightness: '100%'
+            };
+            applyFilters();
+            // Hide all sliders
+            var sliders = document.getElementsByClassName('slider');
+            for (var i = 0; i < sliders.length; i++) {
+                sliders[i].style.display = 'none';
+            }
         }
-        
-        // Function to redirect to the main page
+
+        function toggleSlider(filter) {
+            var sliderContainerId = filter + 'SliderContainer';
+            var sliderContainer = document.getElementById(sliderContainerId);
+            var sliders = document.getElementsByClassName('slider');
+            // Hide all sliders except for the active one
+            for (var i = 0; i < sliders.length; i++) {
+                if (sliders[i].id !== sliderContainerId) {
+                    sliders[i].style.display = 'none';
+                }
+            }
+            // Toggle the clicked slider
+            sliderContainer.style.display = sliderContainer.style.display === 'block' ? 'none' : 'block';
+        }
+
         function goBackToMainPage() {
-            window.location.href = '/'; // Assuming the root of your website is the main page
+            window.location.href = '/'; 
         }
     </script>
 </body>
