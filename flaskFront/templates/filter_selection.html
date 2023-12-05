@@ -43,8 +43,13 @@
         <button onclick="toggleSlider('blackWhite')">Black & White</button>
         <button onclick="toggleSlider('blur')">Blur</button>
         <button onclick="toggleSlider('brighten')">Brighten</button>
+        <button onclick="toggleSlider('contrast')">Contrast</button>
+        <button onclick="toggleSlider('saturation')">Saturation</button>
+        <button onclick="toggleSlider('invert')">Invert Colors</button>
+        <button onclick="toggleSlider('dropShadow')">Drop Shadow</button>
         <button onclick="resetFilters()">Original</button>
         <button onclick="goBackToMainPage()">Back to Main</button>
+
         <div id="sepiaSliderContainer" class="slider">
             <label for="sepiaSlider">Sepia:</label>
             <input type="range" id="sepiaSlider" min="0" max="100" value="0" oninput="applySepia(this.value)">
@@ -61,6 +66,23 @@
             <label for="brightenSlider">Brighten:</label>
             <input type="range" id="brightenSlider" min="0" max="200" value="100" oninput="applyBrighten(this.value)">
         </div>
+        <div id="contrastSliderContainer" class="slider">
+            <label for="contrastSlider">Contrast:</label>
+            <input type="range" id="contrastSlider" min="0" max="200" value="100" oninput="applyContrast(this.value)">
+        </div>
+        <div id="saturationSliderContainer" class="slider">
+            <label for="saturationSlider">Saturation:</label>
+            <input type="range" id="saturationSlider" min="0" max="200" value="100" oninput="applySaturation(this.value)">
+        </div>  
+        <div id="invertSliderContainer" class="slider">
+            <label for="invertSlider">Invert Colors:</label>
+            <input type="range" id="invertSlider" min="0" max="100" value="0" oninput="applyInvert(this.value)">
+        </div>  
+        <div id="dropShadowSliderContainer" class="slider">
+            <label for="dropShadowSlider">Drop Shadow:</label>
+            <input type="range" id="dropShadowSlider" min="0" max="10" value="0" oninput="applyDropShadow(this.value)">
+        </div>                    
+        
     </div>
     <script>
         // Store current filter values
@@ -98,6 +120,27 @@
             currentFilters['brightness'] = value + '%';
             applyFilters();
         }
+
+        function applyContrast(value) {
+            currentFilters['contrast'] = value + '%';
+            applyFilters();
+        }
+
+        function applySaturation(value) {
+            currentFilters['saturate'] = value + '%';
+            applyFilters();
+        }
+
+        function applyInvert(value) {
+            currentFilters['invert'] = value + '%';
+            applyFilters();
+        }
+
+        function applyDropShadow(value) {
+            currentFilters['drop-shadow'] = `0px 0px ${value}px #000000`;
+            applyFilters();
+        }
+
 
         function resetFilters() {
             // Reset values
