@@ -7,11 +7,28 @@
     {{ bootstrap.load_css() }}
     <style>
         body {
+            background-image: url('static/images/bag.jpg'); 
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: rgb(172, 213, 229);
+        }
+        .info-box {
+            display: none;
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .learn-more-button{
+            display: inline;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            border-radius: 5px;
         }
 
         .container {
@@ -26,17 +43,56 @@
             margin: 0 auto; 
             display: block; 
             align-items: center;
+            
         }
 
         /* Initially hide all sliders */
         .slider {
             display: none;
         }
+        button {
+            background-color: rgb(119,158,203);
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 12px;
+            margin-right: 10px;
+            border: 2px solid #fff;
+            margin-bottom: 10px; 
+            
+        }
+
+        h1 {
+            color: #fff;
+            font-weight: bolder;
+        }
+        
+        .slider-container {
+           
+
+            margin-bottom: 10px; /* Adjust as needed for spacing */
+        }
+        .slider{
+            color: #fff;
+            font-weight: bolder;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Apply Filter to your Picture</h1>
+        <h1>Apply Filter</h1>
+        <!--Learn More Button-->
+    
+        <a href="#" class="learn-more-button" onclick="toggleInfoBox()">Learn More</a>
+        <br>
+        <!-- Text Box -->
+        <div id="infoBox" class="info-box">
+            <p>This page applies different filters to the randomly generated or uploaded picture. It stacks filters on top of each other. There is also a slider that can increase or decrease the intensity of the image filters. </p>
+
+        </div>
+        <br>
+
         <img id="treeImage" src="{{ image_url }}" width="550" alt="Tree Image">
         <br>
         <button onclick="toggleSlider('sepia')">Sepia</button>
@@ -49,6 +105,8 @@
         <button onclick="toggleSlider('dropShadow')">Drop Shadow</button>
         <button onclick="resetFilters()">Original</button>
         <button onclick="goBackToMainPage()">Back to Main</button>
+
+        
 
         <div id="sepiaSliderContainer" class="slider">
             <label for="sepiaSlider">Sepia:</label>
@@ -92,6 +150,14 @@
             blur: '0px',
             brightness: '100%'
         };
+        // function toggleInfoBox(){
+        //     var infoBox=document.getElementById('infoBox');
+        //     infoBox.style.display=infoBox.style.display==='block'? 'none': 'block';
+        // }
+        function toggleInfoBox() {
+            var infoBox = document.getElementById('infoBox');
+            infoBox.style.display = infoBox.style.display === 'none' || infoBox.style.display === '' ? 'block' : 'none';
+        }
 
         function applyFilters() {
             var filterString = '';
