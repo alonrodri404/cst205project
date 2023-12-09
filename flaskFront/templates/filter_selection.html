@@ -95,6 +95,7 @@
 
         <img id="treeImage" src="{{ image_url }}" width="550" alt="Tree Image">
         <br>
+        
         <button onclick="toggleSlider('sepia')">Sepia</button>
         <button onclick="toggleSlider('blackWhite')">Black & White</button>
         <button onclick="toggleSlider('blur')">Blur</button>
@@ -104,6 +105,8 @@
         <button onclick="toggleSlider('invert')">Invert Colors</button>
         <button onclick="toggleSlider('dropShadow')">Drop Shadow</button>
         <button onclick="resetFilters()">Original</button>
+        <button onclick="goToGallery()">Gallery</button>
+
         <button onclick="goBackToMainPage()">Back to Main</button>
 
         
@@ -205,6 +208,10 @@
         function applyDropShadow(value) {
             currentFilters['drop-shadow'] = `0px 0px ${value}px #000000`;
             applyFilters();
+        }
+
+        function gotoToGallery(){
+            window.location.href = '/gallery'; 
         }
 
 

@@ -60,6 +60,10 @@ def filters():
 
     return redirect(url_for('index'))
 
+@app.route('/gallery')
+def gallery():
+    return render_template("index1.html")
+
 
 @app.route('/filter_selection')
 def filter_selection():
