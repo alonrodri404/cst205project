@@ -57,6 +57,34 @@
         button:hover {
             background-color: rgb(85, 116, 158);
         }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 12px 24px;
+            cursor: pointer;
+            color: #fff;
+            background-color: rgb(119,158,203);
+            border-radius: 12px;
+            border: 2px solid #fff;
+            text-align: center;
+        }
+
+        .custom-file-upload:hover {
+            background-color: rgb(85, 116, 158);
+        }
+
+        #file {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        #file + label {
+            cursor: pointer;
+        }
         
 
     </style>
@@ -64,19 +92,26 @@
 <body>
     <div class="container">
         <h1>Picture Filter</h1>
-        {% if image_urls %}
-            {% for image_url in image_urls %}
-                <img src="{{ image_url }}" alt="Animal Image">
-            {% endfor %}
-        {% else %}
-            <!-- <img src="{{ image_url }}" alt="Tree Image"> -->
-            <img src="static/images/up.jpg" alt="Welcome Image " >
-        {% endif %}
+        
+         <!-- Combined logic for displaying images -->
+         {% if image_urls %}
+         {% for image_url in image_urls %}
+             <img src="{{ image_url }}" alt="Animal Image">
+         {% endfor %}
+         {% elif image_url %}
+             <img src="{{ image_url }}" alt="Uploaded Image">
+         {% else %}
+             <img src="static/images/up.jpg" alt="Welcome Image">
+         {% endif %}
+
         <form action="/filters" method="post">
             <button type="submit" name="filter" value="Generate Pictures">Generate Pictures</button>
             <button type="submit" name="filter" value="Apply Filter">Apply Filter</button>
         </form>
+            <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
+                <input type="file" name="file" id="file" onchange="document.getElementById('upload-form').submit();" />
+                <label for="file" class="custom-file-upload">Upload Image</label>
+            </form>
     </div>
-    
 </body>
 </html>
