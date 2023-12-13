@@ -1,7 +1,7 @@
 import requests
 import os
 from flask import url_for
- 
+#  Alondra's work
 def generate_animal_pictures():
     image_urls = []
     image_dir = 'static/images'  # Define the directory path

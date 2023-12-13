@@ -1,3 +1,6 @@
+#CST 205, Picture Filter, upload or generate random pictures and then apply filters on it, Achsah, Emily, Daniel, Alondra, Dec 13th 2023
+#Github link: https://github.com/alonrodri404/cst205project.git
+
 # Alondra Rodriguez: Hello, I worked on the backend functions of the code. I made sure that every button was working when pressed and made the filters/filter sliders. 
 # I worked with Daniel Solano, another backend programmer, and we helped each other with the animal random picture generator to display in main, including creating an upload button that is functional. 
 
@@ -17,7 +20,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
+# Alondra's work
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -38,7 +41,7 @@ def upload_file():
             return redirect(url_for('index'))
 
     return render_template("upload.html")
-
+# Achsah's work
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
