@@ -1,3 +1,6 @@
+# Alondra Rodriguez: Hello, I worked on the backend functions of the code. I made sure that every button was working when pressed and made the filters/filter sliders. 
+# I worked with Daniel Solano, another backend programmer, and we helped each other with the animal random picture generator to display in main, including creating an upload button that is functional. 
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_bootstrap import Bootstrap5
 from backend import generate_animal_pictures
