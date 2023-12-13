@@ -5,15 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
+    <style>
+         button {
+            background-color: rgb(119,158,203);
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 12px;
+            margin-right: 10px;
+            border: 2px solid #fff;
+            margin-bottom: 10px; 
+         }
+    </style>
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
-    <div class="view-image">
+<button onclick="goBackToMainPage()">Back to Main</button>
+<button onclick="goBackToFilterSelection()">Back to Filter Selection</button>
+
+<body style="background-color: rgb(119,158,203);"> 
+        <div class="view-image">
         <img src="https://images.unsplash.com/photo-1668954206766-404e981f57f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60." alt="">
-        <span>X</span>
+        <span></span>
     </div>
 
     <div class="image-container">
+
         <img src="https://images.unsplash.com/photo-1668937642482-f84271bfa5a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" alt="">
         <img src="https://images.unsplash.com/photo-1668954206766-404e981f57f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" alt="">
         <img src="https://images.unsplash.com/photo-1668891720406-947defa2e234?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyM3x8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" alt="">
@@ -47,5 +63,13 @@
     closeBtn.addEventListener('click',function(){
         viewImage.style.display = "none";
     })
+
+     function goBackToMainPage() {
+            window.location.href = '/'; 
+        }
+
+    function goBackToFilterSelection() {
+        window.location.href = '/filter_selection'; 
+    }
 </script>
 </html>

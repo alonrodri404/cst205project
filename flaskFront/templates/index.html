@@ -91,6 +91,7 @@
 </head>
 <body>
     <div class="container">
+
         <h1>Picture Filter</h1>
         
          <!-- Combined logic for displaying images -->
@@ -107,11 +108,20 @@
         <form action="/filters" method="post">
             <button type="submit" name="filter" value="Generate Pictures">Generate Pictures</button>
             <button type="submit" name="filter" value="Apply Filter">Apply Filter</button>
+
+
         </form>
             <form action="/" method="post" enctype="multipart/form-data" id="upload-form">
                 <input type="file" name="file" id="file" onchange="document.getElementById('upload-form').submit();" />
                 <label for="file" class="custom-file-upload">Upload Image</label>
+
+
             </form>
+
     </div>
+    <script>
+
+    </script>
+    
 </body>
 </html>
