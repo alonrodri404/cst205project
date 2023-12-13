@@ -105,6 +105,8 @@
         <button onclick="toggleSlider('contrast')">Contrast</button>
         <button onclick="toggleSlider('saturation')">Saturation</button>
         <button onclick="toggleSlider('invert')">Invert Colors</button>
+        <!-- Achsah work -->
+        <button onclick="toggleSlider('sharpen')">Sharpen</button>
         <button onclick="toggleSlider('dropShadow')">Drop Shadow</button>
         <button onclick="resetFilters()">Original</button>
         <button onclick="goToGallery()">Gallery</button>
@@ -137,6 +139,12 @@
             <label for="saturationSlider">Saturation:</label>
             <input type="range" id="saturationSlider" min="0" max="200" value="100" oninput="applySaturation(this.value)">
         </div>  
+        <!-- Achsah work -->
+        <div id="sharpenSliderContainer" class="slider">
+            <label for="sharpenSlider">Sharpen:</label>
+            <input type="range" id="sharpenSlider" min="0" max="100" value="0" oninput="applySharpen(this.value)">
+        </div>
+
         <div id="invertSliderContainer" class="slider">
             <label for="invertSlider">Invert Colors:</label>
             <input type="range" id="invertSlider" min="0" max="100" value="0" oninput="applyInvert(this.value)">
@@ -172,6 +180,7 @@
             document.getElementById('treeImage').style.filter = filterString.trim();
         }
 
+
         function applySepia(value) {
             currentFilters['sepia'] = value + '%';
             applyFilters();
@@ -197,8 +206,18 @@
             applyFilters();
         }
 
+
         function applySaturation(value) {
             currentFilters['saturate'] = value + '%';
+            applyFilters();
+        }
+        // Achsah work
+        function applySharpen(value) {
+            // Assuming a standard sharpening effect using CSS filter: contrast and saturate
+            var contrastVal = Math.max(100, 100 + (value * 2));
+            var saturateVal = Math.max(100, 100 + value);
+            currentFilters['contrast'] = contrastVal + '%';
+            currentFilters['saturate'] = saturateVal + '%';
             applyFilters();
         }
 
